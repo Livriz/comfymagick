@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  comfyui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: comfyui
+    ports:
+      - "8188:8188"
+    volumes:
+      - ./output:/app/output
+      - ./input:/app/input
+      - ./custom_nodes:/app/custom_nodes
+    environment:
+      - CLI_ARGS=--listen 0.0.0.0
+    restart: unless-stopped
